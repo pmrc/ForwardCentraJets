@@ -294,9 +294,9 @@ void unfold_distribution(TH1D *detected, TH1D *input_detected, TH1D *result, TH1
 // 3 - too low at lower bins / 4 - too low at lower bins / 5 - too low at lower bins
 // 6 - too low at lower bins / 7 - too low at lower bins / 8 - too low at lower bins 
 // 9 - too low at lower bins / 10 - too low at lower bins / 11 - too low at lower bins 
-int bayes_iterations = 4; //small int bigger than 0
+int bayes_iterations = 2; //small int bigger than 0
 // 1 - too low at high bins / 2 - too low at high bins / 3 - 
-int svd_regularization = 1; //between 1 and number of bins
+int svd_regularization = 2; //between 1 and number of bins
 
 //get entries
 int num = detected->GetEntries();

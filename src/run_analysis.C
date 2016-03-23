@@ -50,8 +50,8 @@ void run_analysis()
   bool compute_resolution = false;
   bool plot_resolution = false;
   bool get_pileup_normalization = false;
-  bool read_mc_ntuples_gen = false;
-  bool read_mc_ntuples_det = false; //done
+  bool read_mc_ntuples_gen = true; //needs p6 for unfolding
+  bool read_mc_ntuples_det = true; //needs p6 for unfolding
   bool read_data_ntuples = false; //done
   bool check_cross_section = false; //done
   bool normalize_mc = false; //done
@@ -62,8 +62,8 @@ void run_analysis()
   bool apply_corrections = false; //might need to run it
   bool create_unfolding_response = false; //done
   bool check_response_matrix = false; //might be done
-  bool unfold = true; //here
-  bool compare_unfolding_results = true; //here
+  bool unfold = false; //here
+  bool compare_unfolding_results = false; //here
   bool merge_data = false; //suspeita
   bool compute_model_uncertainty = false;
   bool compute_jes_uncertainty = false;
@@ -162,8 +162,8 @@ void run_analysis()
    double lumi_p6_z2[5];
    mc_p6_z2[0] = ntuple_pythia6_v16_path + "QCD_Ht-50to100_TuneZ2star_7TeV_madgraph_pythia6_V16.root";
    lumi_p6_z2[0] = 1.0 * 1.741e8/11111394.0;
-   mc_p6_z2[0] = ntuple_pythia6_v16_path + "QCD_Ht-100to250_TuneZ2star_7TeV_madgraph_pythia6_V16.root";
-   lumi_p6_z2[0] = 1.0 * 4.069e6/10353295.0;
+   mc_p6_z2[1] = ntuple_pythia6_v16_path + "QCD_Ht-100to250_TuneZ2star_7TeV_madgraph_pythia6_V16.root";
+   lumi_p6_z2[1] = 1.0 * 4.069e6/10353295.0;
    mc_p6_z2[2] = ntuple_pythia6_v16_path + "QCD_Ht-250to500_TuneZ2star_7TeV_madgraph_pythia6_V16.root";
    lumi_p6_z2[2] = 1.0 * 1.978e5/5602739.0;
    mc_p6_z2[3] = ntuple_pythia6_v16_path + "QCD_Ht-500to1000_TuneZ2star_7TeV_madgraph_pythia6_V16.root";
@@ -2522,12 +2522,12 @@ if (show_steps) { cout << "Pythia6 Z2starTune"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", "", "", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMETTau_2010A"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_gen_nopileup_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
-///read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
+read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_nopileup_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmettau_notnorm_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmettau_notnorm_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMET_2010A"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_gen_nopileup_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
-//read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
+read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_nopileup_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmet_notnorm_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmet_notnorm_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match Jet_2010B"<<endl; }
@@ -2596,12 +2596,12 @@ if (show_steps) { cout << "Pythia6 Z2starTune"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", "", "", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMETTau_2010A"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_det_1vertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_DET", "1vertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
-//read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
+read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau_up, lumi_p6_z2, n_files_p6_z2, "MC_DET", "up", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau_down, lumi_p6_z2, n_files_p6_z2, "MC_DET", "down", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMET_2010A"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_det_1vertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_DET", "1vertex", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
-//read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
+read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmet_up, lumi_p6_z2, n_files_p6_z2, "MC_DET", "up", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmet_down, lumi_p6_z2, n_files_p6_z2, "MC_DET", "down", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match Jet_2010B"<<endl; }
@@ -2611,7 +2611,7 @@ if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match Jet_
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jet_down, lumi_p6_z2, n_files_p6_z2, "MC_DET", "down", vertex_weights_p6_z2_jet_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia8 4CTune"<<endl; }
 ///read_ntuple(mc_p8_4c, out_p8_4c_det_1vertex, lumi_p8_4c, n_files_p8_4c, "MC_DET", "1vertex", "", "", detail, test);
-read_ntuple(mc_p8_4c, out_p8_4c_det_allvertex, lumi_p8_4c, n_files_p8_4c, "MC_DET", "allvertex", "", "", detail, test);
+///read_ntuple(mc_p8_4c, out_p8_4c_det_allvertex, lumi_p8_4c, n_files_p8_4c, "MC_DET", "allvertex", "", "", detail, test);
 if (show_steps) { cout << "Pythia8 4CTune with Vertex Reweight to match JetMETTau_2010A"<<endl; }
 ///read_ntuple(mc_p8_4c, out_p8_4c_det_1vertex_jetmettau, lumi_p8_4c, n_files_p8_4c, "MC_DET", "1vertex",  vertex_weights_p8_4c_jetmettau_v5, "_v5", detail, test);
 ///read_ntuple(mc_p8_4c, out_p8_4c_det_allvertex_jetmettau, lumi_p8_4c, n_files_p8_4c, "MC_DET", "allvertex", vertex_weights_p8_4c_jetmettau_v5, "_v5", detail, test);
@@ -2662,7 +2662,7 @@ if (show_steps) { cout << "Herwig pp 23 Tune with Vertex Reweight to match JetME
 ///read_ntuple(mc_hw_23, out_hw_23_det_1vertex_jetmet, lumi_hw_23, n_files_hw_23, "MC_DET", "1vertex",  vertex_weights_hw_23_jetmet_v5, "_v5", detail, test);
 ///read_ntuple(mc_hw_23, out_hw_23_det_allvertex_jetmet, lumi_hw_23, n_files_hw_23, "MC_DET", "allvertex", vertex_weights_hw_23_jetmet_v5, "_v5", detail, test);
 ///read_ntuple(mc_hw_23, out_hw_23_det_allvertex_jetmet_up, lumi_hw_23, n_files_hw_23, "MC_DET", "up", vertex_weights_hw_23_jetmet_v5, "_v5", detail, test);
-read_ntuple(mc_hw_23, out_hw_23_det_allvertex_jetmet_down, lumi_hw_23, n_files_hw_23, "MC_DET", "down", vertex_weights_hw_23_jetmet_v5, "_v5", detail, test);
+///read_ntuple(mc_hw_23, out_hw_23_det_allvertex_jetmet_down, lumi_hw_23, n_files_hw_23, "MC_DET", "down", vertex_weights_hw_23_jetmet_v5, "_v5", detail, test);
 
 
 if (show_steps) { cout << "All the MC Ntuples were sucessfully read!"<<endl; }
@@ -3164,102 +3164,102 @@ if (show_steps) { cout << "Unfolding for JetMETTau_2010A..."<<endl; }
 
 ///BinByBin - Data
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p6_z2_jetmettau, out_p6_z2_unfolded_bbb_data_jetmettau, "BinByBin", 0.25, tau[6], unfolding_plots, "data_unfolded_bbb_pythia6_z2_jetmettau_", true, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_bbb_data_jetmettau, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_pythia8_4c_jetmettau_", true, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_bbb_data_jetmettau, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_eec3_jetmettau_", true, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_bbb_data_jetmettau, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_23_jetmettau_", true, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_bbb_data_jetmettau, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_pythia8_4c_jetmettau_", true, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_bbb_data_jetmettau, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_eec3_jetmettau_", true, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_bbb_data_jetmettau, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_23_jetmettau_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p6_z2_unfolded_bbb_p6_z2_jetmettau, "BinByBin", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_bbb_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_bbb_p8_4c_jetmettau, "BinByBin", 2.0, tau[9], unfolding_plots, "pythia8_4c_unfolded_bbb_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bbb_hw_eec3_jetmettau, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_bbb_hw_23_jetmettau, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_23_unfolded_bbb_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_bbb_p8_4c_jetmettau, "BinByBin", 2.0, tau[9], unfolding_plots, "pythia8_4c_unfolded_bbb_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bbb_hw_eec3_jetmettau, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_bbb_hw_23_jetmettau, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_23_unfolded_bbb_herwig_23_jetmettau_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p8_4c_unfolded_bbb_p6_z2_jetmettau, "BinByBin", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_bbb_pythia8_4c_jetmettau_", false, detail, test);
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p6_z2_unfolded_bbb_p8_4c_jetmettau, "BinByBin", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_bbb_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_bbb_hw_eec3_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_bbb_hw_23_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_bbb_hw_eec3_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_bbb_hw_23_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_pythia8_4c_jetmettau_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bbb_p8_4c_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bbb_hw_23_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bbb_p8_4c_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bbb_hw_23_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_herwig_eec3_jetmettau_", false, detail, test);
 
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_bbb_p8_4c_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_23_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_bbb_hw_eec3_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_bbb_p8_4c_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_bbb_hw_eec3_jetmettau, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_23_jetmettau_", false, detail, test);
 
 
 //SVD
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p6_z2_jetmettau, out_p6_z2_unfolded_svd_data_jetmettau, "SVD", 0.25, tau[6], unfolding_plots, "data_unfolded_svd_pythia6_z2_jetmettau_", true, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_svd_data_jetmettau, "SVD", 1.0, tau[7], unfolding_plots, "data_unfolded_svd_pythia8_4c_jetmettau_", true, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_svd_data_jetmettau, "SVD", 1.0, tau[7], unfolding_plots, "data_unfolded_svd_herwig_eec3_jetmettau_", true, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_svd_data_jetmettau, "SVD", 1.0, tau[7], unfolding_plots, "data_unfolded_svd_herwig_23_jetmettau_", true, detail, test);
+unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_svd_data_jetmettau, "SVD", 1.25, tau[7], unfolding_plots, "data_unfolded_svd_pythia8_4c_jetmettau_", true, detail, test);
+unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_svd_data_jetmettau, "SVD", 1.25, tau[7], unfolding_plots, "data_unfolded_svd_herwig_eec3_jetmettau_", true, detail, test);
+unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_svd_data_jetmettau, "SVD", 1.25, tau[7], unfolding_plots, "data_unfolded_svd_herwig_23_jetmettau_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p6_z2_unfolded_svd_p6_z2_jetmettau, "SVD", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_svd_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_svd_p8_4c_jetmettau, "SVD", 2.0, tau[9], unfolding_plots, "pythia8_4c_unfolded_svd_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_svd_hw_eec3_jetmettau, "SVD", 2.0, tau[9], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_svd_hw_23_jetmettau, "SVD", 2.0, tau[9], unfolding_plots, "herwig_23_unfolded_svd_herwig_23_jetmettau_", false, detail, test);
+unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_svd_p8_4c_jetmettau, "SVD", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_svd_pythia8_4c_jetmettau_", false, detail, test);
+unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_svd_hw_eec3_jetmettau, "SVD", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_eec3_jetmettau_", false, detail, test);
+unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_svd_hw_23_jetmettau, "SVD", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_svd_herwig_23_jetmettau_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p8_4c_unfolded_svd_p6_z2_jetmettau, "SVD", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_svd_pythia8_4c_jetmettau_", false, detail, test);
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p6_z2_unfolded_svd_p8_4c_jetmettau, "SVD", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_svd_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_svd_hw_eec3_jetmettau, "SVD", 1.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_svd_hw_23_jetmettau, "SVD", 1.0, tau[10], unfolding_plots, "herwig_23_unfolded_svd_pythia8_4c_jetmettau_", false, detail, test);
+unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_svd_hw_eec3_jetmettau, "SVD", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_pythia8_4c_jetmettau_", false, detail, test);
+unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_svd_hw_23_jetmettau, "SVD", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_svd_pythia8_4c_jetmettau_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_svd_p8_4c_jetmettau, "SVD", 1.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_svd_hw_23_jetmettau, "SVD", 1.0, tau[10], unfolding_plots, "herwig_23_unfolded_svd_herwig_eec3_jetmettau_", false, detail, test);
+unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_svd_p8_4c_jetmettau, "SVD", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_eec3_jetmettau_", false, detail, test);
+unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_svd_hw_23_jetmettau, "SVD", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_svd_herwig_eec3_jetmettau_", false, detail, test);
 
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_svd_p8_4c_jetmettau, "SVD", 1.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_23_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_svd_hw_eec3_jetmettau, "SVD", 1.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_23_jetmettau_", false, detail, test);
+unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_svd_p8_4c_jetmettau, "SVD", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_23_jetmettau_", false, detail, test);
+unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_svd_hw_eec3_jetmettau, "SVD", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_23_jetmettau_", false, detail, test);
 
 
 //Bayes
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p6_z2_jetmettau, out_p6_z2_unfolded_bayes_data_jetmettau, "Bayes", 0.25, tau[6], unfolding_plots, "data_unfolded_bayes_pythia6_z2_jetmettau_", true, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_bayes_data_jetmettau, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_pythia8_4c_jetmettau_", true, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_bayes_data_jetmettau, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_eec3_jetmettau_", true, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_bayes_data_jetmettau, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_23_jetmettau_", true, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_bayes_data_jetmettau, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_pythia8_4c_jetmettau_", true, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_bayes_data_jetmettau, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_eec3_jetmettau_", true, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_bayes_data_jetmettau, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_23_jetmettau_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p6_z2_unfolded_bayes_p6_z2_jetmettau, "Bayes", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_bayes_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_bayes_p8_4c_jetmettau, "Bayes", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_bayes_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bayes_hw_eec3_jetmettau, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_bayes_hw_23_jetmettau, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_bayes_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_bayes_p8_4c_jetmettau, "Bayes", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_bayes_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bayes_hw_eec3_jetmettau, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_bayes_hw_23_jetmettau, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_bayes_herwig_23_jetmettau_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p8_4c_unfolded_bayes_p6_z2_jetmettau, "Bayes", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_bayes_pythia8_4c_jetmettau_", false, detail, test);
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p6_z2_unfolded_bayes_p8_4c_jetmettau, "Bayes", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_bayes_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_bayes_hw_eec3_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_bayes_hw_23_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_bayes_hw_eec3_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_bayes_hw_23_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_pythia8_4c_jetmettau_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bayes_p8_4c_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bayes_hw_23_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bayes_p8_4c_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_bayes_hw_23_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_herwig_eec3_jetmettau_", false, detail, test);
 
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_bayes_p8_4c_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_23_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_bayes_hw_eec3_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_bayes_p8_4c_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_bayes_hw_eec3_jetmettau, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_23_jetmettau_", false, detail, test);
 
 
 //TUnfold
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p6_z2_jetmettau, out_p6_z2_unfolded_tunfold_data_jetmettau, "TUnfold", 0.25, tau[6], unfolding_plots, "data_unfolded_tunfold_pythia6_z2_jetmettau_", true, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_tunfold_data_jetmettau, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_pythia8_4c_jetmettau_", true, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_tunfold_data_jetmettau, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_eec3_jetmettau_", true, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_tunfold_data_jetmettau, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_23_jetmettau_", true, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_p8_4c_jetmettau, out_p8_4c_unfolded_tunfold_data_jetmettau, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_pythia8_4c_jetmettau_", true, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_eec3_jetmettau, out_hw_eec3_unfolded_tunfold_data_jetmettau, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_eec3_jetmettau_", true, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_jetmettau_allvertex, corrected_hw_23_jetmettau, out_hw_23_unfolded_tunfold_data_jetmettau, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_23_jetmettau_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p6_z2_unfolded_tunfold_p6_z2_jetmettau, "TUnfold", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_tunfold_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_tunfold_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_tunfold_hw_23_jetmettau, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p8_4c_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_tunfold_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_eec3_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_23_unfolded_tunfold_hw_23_jetmettau, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_23_jetmettau_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmettau_unf_allvertex, out_p6_z2_det_allvertex_jetmettau, out_p6_z2_gen_allvertex_jetmettau, out_p8_4c_unfolded_tunfold_p6_z2_jetmettau, "TUnfold", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_tunfold_pythia8_4c_jetmettau_", false, detail, test);
 //unfolding(out_p6_z2_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_p6_z2_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_tunfold_pythia6_z2_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_pythia8_4c_jetmettau_", false, detail, test);
-unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_tunfold_hw_23_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_p8_4c_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_pythia8_4c_jetmettau_", false, detail, test);
+///unfolding(out_p8_4c_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_p8_4c_unfolded_tunfold_hw_23_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_pythia8_4c_jetmettau_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_eec3_jetmettau_", false, detail, test);
-unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_tunfold_hw_23_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_eec3_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_eec3_jetmettau_", false, detail, test);
+///unfolding(out_hw_eec3_jetmettau_unf_allvertex, out_hw_23_det_allvertex_jetmettau, out_hw_23_gen_allvertex_jetmettau, out_hw_eec3_unfolded_tunfold_hw_23_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_eec3_jetmettau_", false, detail, test);
 
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_23_jetmettau_", false, detail, test);
-unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_p8_4c_det_allvertex_jetmettau, out_p8_4c_gen_allvertex_jetmettau, out_hw_23_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_23_jetmettau_", false, detail, test);
+///unfolding(out_hw_23_jetmettau_unf_allvertex, out_hw_eec3_det_allvertex_jetmettau, out_hw_eec3_gen_allvertex_jetmettau, out_hw_23_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_23_jetmettau_", false, detail, test);
 
 
 
@@ -3267,102 +3267,102 @@ if (show_steps) { cout << "Unfolding for JetMET_2010A..."<<endl; }
 
 ///BinByBin - Data
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p6_z2_jetmet, out_p6_z2_unfolded_bbb_data_jetmet, "BinByBin", 0.25, tau[6], unfolding_plots, "data_unfolded_bbb_pythia6_z2_jetmet_", true, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_bbb_data_jetmet, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_pythia8_4c_jetmet_", true, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_bbb_data_jetmet, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_eec3_jetmet_", true, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_bbb_data_jetmet, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_23_jetmet_", true, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_bbb_data_jetmet, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_pythia8_4c_jetmet_", true, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_bbb_data_jetmet, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_eec3_jetmet_", true, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_bbb_data_jetmet, "BinByBin", 2.0, tau[7], unfolding_plots, "data_unfolded_bbb_herwig_23_jetmet_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p6_z2_unfolded_bbb_p6_z2_jetmet, "BinByBin", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_bbb_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_bbb_p8_4c_jetmet, "BinByBin", 2.0, tau[9], unfolding_plots, "pythia8_4c_unfolded_bbb_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_bbb_hw_eec3_jetmet, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_bbb_hw_23_jetmet, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_23_unfolded_bbb_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_bbb_p8_4c_jetmet, "BinByBin", 2.0, tau[9], unfolding_plots, "pythia8_4c_unfolded_bbb_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_bbb_hw_eec3_jetmet, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_bbb_hw_23_jetmet, "BinByBin", 2.0, tau[9], unfolding_plots, "herwig_23_unfolded_bbb_herwig_23_jetmet_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p8_4c_unfolded_bbb_p6_z2_jetmet, "BinByBin", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_bbb_pythia8_4c_jetmet_", false, detail, test);
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p6_z2_unfolded_bbb_p8_4c_jetmet, "BinByBin", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_bbb_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_bbb_hw_eec3_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_bbb_hw_23_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_bbb_hw_eec3_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_bbb_hw_23_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_pythia8_4c_jetmet_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_bbb_p8_4c_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_bbb_hw_23_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_bbb_p8_4c_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_bbb_hw_23_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_23_unfolded_bbb_herwig_eec3_jetmet_", false, detail, test);
 
-unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_bbb_p8_4c_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_23_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_bbb_hw_eec3_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_bbb_p8_4c_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_bbb_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_bbb_hw_eec3_jetmet, "BinByBin", 2.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_bbb_herwig_23_jetmet_", false, detail, test);
 
 
 //SVD
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p6_z2_jetmet, out_p6_z2_unfolded_svd_data_jetmet, "SVD", 0.25, tau[6], unfolding_plots, "data_unfolded_svd_pythia6_z2_jetmet_", true, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_svd_data_jetmet, "SVD", 1.0, tau[7], unfolding_plots, "data_unfolded_svd_pythia8_4c_jetmet_", true, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_svd_data_jetmet, "SVD", 1.0, tau[7], unfolding_plots, "data_unfolded_svd_herwig_eec3_jetmet_", true, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_svd_data_jetmet, "SVD", 1.0, tau[7], unfolding_plots, "data_unfolded_svd_herwig_23_jetmet_", true, detail, test);
+unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_svd_data_jetmet, "SVD", 1.25, tau[7], unfolding_plots, "data_unfolded_svd_pythia8_4c_jetmet_", true, detail, test);
+unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_svd_data_jetmet, "SVD", 1.25, tau[7], unfolding_plots, "data_unfolded_svd_herwig_eec3_jetmet_", true, detail, test);
+unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_svd_data_jetmet, "SVD", 1.25, tau[7], unfolding_plots, "data_unfolded_svd_herwig_23_jetmet_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p6_z2_unfolded_svd_p6_z2_jetmet, "SVD", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_svd_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_svd1_p8_4c_jetmet, "SVD", 2.0, tau[9], unfolding_plots, "pythia8_4c_unfolded_svd_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_svd1_hw_eec3_jetmet, "SVD", 2.0, tau[9], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_svd1_hw_23_jetmet, "SVD", 2.0, tau[9], unfolding_plots, "herwig_23_unfolded_svd_herwig_23_jetmet_", false, detail, test);
+unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_svd_p8_4c_jetmet, "SVD", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_svd_pythia8_4c_jetmet_", false, detail, test);
+unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_svd_hw_eec3_jetmet, "SVD", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_eec3_jetmet_", false, detail, test);
+unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_svd_hw_23_jetmet, "SVD", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_svd_herwig_23_jetmet_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p8_4c_unfolded_svd_p6_z2_jetmet, "SVD", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_svd_pythia8_4c_jetmet_", false, detail, test);
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p6_z2_unfolded_svd_p8_4c_jetmet, "SVD", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_svd_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_svd_hw_eec3_jetmet, "SVD", 1.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_svd_hw_23_jetmet, "SVD", 1.0, tau[10], unfolding_plots, "herwig_23_unfolded_svd_pythia8_4c_jetmet_", false, detail, test);
+unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_svd_hw_eec3_jetmet, "SVD", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_pythia8_4c_jetmet_", false, detail, test);
+unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_svd_hw_23_jetmet, "SVD", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_svd_pythia8_4c_jetmet_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_svd_p8_4c_jetmet, "SVD", 1.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_svd_hw_23_jetmet, "SVD", 1.0, tau[10], unfolding_plots, "herwig_23_unfolded_svd_herwig_eec3_jetmet_", false, detail, test);
+unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_svd_p8_4c_jetmet, "SVD", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_eec3_jetmet_", false, detail, test);
+unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_svd_hw_23_jetmet, "SVD", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_svd_herwig_eec3_jetmet_", false, detail, test);
 
-unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_svd_p8_4c_jetmet, "SVD", 1.0, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_23_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_svd_hw_eec3_jetmet, "SVD", 1.0, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_23_jetmet_", false, detail, test);
+unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_svd_p8_4c_jetmet, "SVD", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_svd_herwig_23_jetmet_", false, detail, test);
+unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_svd_hw_eec3_jetmet, "SVD", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_svd_herwig_23_jetmet_", false, detail, test);
 
 
 //Bayes
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p6_z2_jetmet, out_p6_z2_unfolded_bayes_data_jetmet, "Bayes", 0.25, tau[6], unfolding_plots, "data_unfolded_bayes_pythia6_z2_jetmet_", true, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_bayes_data_jetmet, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_pythia8_4c_jetmet_", true, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_bayes_data_jetmet, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_eec3_jetmet_", true, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_bayes_data_jetmet, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_23_jetmet_", true, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_bayes_data_jetmet, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_pythia8_4c_jetmet_", true, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_bayes_data_jetmet, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_eec3_jetmet_", true, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_bayes_data_jetmet, "Bayes", 1.25, tau[7], unfolding_plots, "data_unfolded_bayes_herwig_23_jetmet_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p6_z2_unfolded_bayes_p6_z2_jetmet, "Bayes", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_bayes_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_bayes_p8_4c_jetmet, "Bayes", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_bayes_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_bayes_hw_eec3_jetmet, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_bayes_hw_23_jetmet, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_bayes_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_bayes_p8_4c_jetmet, "Bayes", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_bayes_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_bayes_hw_eec3_jetmet, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_bayes_hw_23_jetmet, "Bayes", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_bayes_herwig_23_jetmet_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p8_4c_unfolded_bayes_p6_z2_jetmet, "Bayes", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_bayes_pythia8_4c_jetmet_", false, detail, test);
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p6_z2_unfolded_bayes_p8_4c_jetmet, "Bayes", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_bayes_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_bayes_hw_eec3_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_bayes_hw_23_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_bayes_hw_eec3_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_bayes_hw_23_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_pythia8_4c_jetmet_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_bayes_p8_4c_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_bayes_hw_23_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_bayes_p8_4c_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_bayes_hw_23_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_bayes_herwig_eec3_jetmet_", false, detail, test);
 
-unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_bayes_p8_4c_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_23_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_bayes_hw_eec3_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_bayes_p8_4c_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_bayes_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_bayes_hw_eec3_jetmet, "Bayes", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_bayes_herwig_23_jetmet_", false, detail, test);
 
 
 //TUnfold
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p6_z2_jetmet, out_p6_z2_unfolded_tunfold_data_jetmet, "TUnfold", 0.25, tau[6], unfolding_plots, "data_unfolded_tunfold_pythia6_z2_jetmet_", true, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_tunfold_data_jetmet, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_pythia8_4c_jetmet_", true, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_tunfold_data_jetmet, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_eec3_jetmet_", true, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_tunfold_data_jetmet, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_23_jetmet_", true, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_p8_4c_jetmet, out_p8_4c_unfolded_tunfold_data_jetmet, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_pythia8_4c_jetmet_", true, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_eec3_jetmet, out_hw_eec3_unfolded_tunfold_data_jetmet, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_eec3_jetmet_", true, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_jetmet_allvertex, corrected_hw_23_jetmet, out_hw_23_unfolded_tunfold_data_jetmet, "TUnfold", 1.25, tau[7], unfolding_plots, "data_unfolded_tunfold_herwig_23_jetmet_", true, detail, test);
 
 
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p6_z2_unfolded_tunfold_p6_z2_jetmet, "TUnfold", 0.5, tau[8], unfolding_plots, "pythia6_z2_unfolded_tunfold_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_tunfold_p8_4c_jetmet, "TUnfold", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_tunfold_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_tunfold_hw_eec3_jetmet, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_tunfold_hw_23_jetmet, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p8_4c_unfolded_tunfold_p8_4c_jetmet, "TUnfold", 1.25, tau[9], unfolding_plots, "pythia8_4c_unfolded_tunfold_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_eec3_unfolded_tunfold_hw_eec3_jetmet, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_23_unfolded_tunfold_hw_23_jetmet, "TUnfold", 1.25, tau[9], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_23_jetmet_", false, detail, test);
 
 
 //unfolding(out_p8_4c_jetmet_unf_allvertex, out_p6_z2_det_allvertex_jetmet, out_p6_z2_gen_allvertex_jetmet, out_p8_4c_unfolded_tunfold_p6_z2_jetmet, "TUnfold", 0.5, tau[10], unfolding_plots, "pythia6_z2_unfolded_tunfold_pythia8_4c_jetmet_", false, detail, test);
 //unfolding(out_p6_z2_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_p6_z2_unfolded_tunfold_p8_4c_jetmet, "TUnfold", 0.5, tau[11], unfolding_plots, "pythia8_4c_unfolded_tunfold_pythia6_z2_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_tunfold_hw_eec3_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_pythia8_4c_jetmet_", false, detail, test);
-unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_tunfold_hw_23_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_p8_4c_unfolded_tunfold_hw_eec3_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_pythia8_4c_jetmet_", false, detail, test);
+///unfolding(out_p8_4c_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_p8_4c_unfolded_tunfold_hw_23_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_pythia8_4c_jetmet_", false, detail, test);
 
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_tunfold_p8_4c_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_eec3_jetmet_", false, detail, test);
-unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_tunfold_hw_23_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_eec3_unfolded_tunfold_p8_4c_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_eec3_jetmet_", false, detail, test);
+///unfolding(out_hw_eec3_jetmet_unf_allvertex, out_hw_23_det_allvertex_jetmet, out_hw_23_gen_allvertex_jetmet, out_hw_eec3_unfolded_tunfold_hw_23_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_23_unfolded_tunfold_herwig_eec3_jetmet_", false, detail, test);
 
-unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_tunfold_p8_4c_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_23_jetmet_", false, detail, test);
-unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_tunfold_hw_eec3_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_p8_4c_det_allvertex_jetmet, out_p8_4c_gen_allvertex_jetmet, out_hw_23_unfolded_tunfold_p8_4c_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "pythia8_4c_unfolded_tunfold_herwig_23_jetmet_", false, detail, test);
+///unfolding(out_hw_23_jetmet_unf_allvertex, out_hw_eec3_det_allvertex_jetmet, out_hw_eec3_gen_allvertex_jetmet, out_hw_23_unfolded_tunfold_hw_eec3_jetmet, "TUnfold", 1.25, tau[10], unfolding_plots, "herwig_eec3_unfolded_tunfold_herwig_23_jetmet_", false, detail, test);
 
 if (show_steps) { cout << "Unfolding for Jet_2010B..."<<endl; }
 
@@ -3438,11 +3438,11 @@ compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", o
 compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", out_p8_4c_gen_allvertex_jetmettau, "Generator Level", out_p8_4c_unfolded_bbb_p8_4c_jetmettau, "RooUnfold Bin-by-Bin", out_p8_4c_unfolded_tunfold_p8_4c_jetmettau, "TUnfold", out_p8_4c_unfolded_svd_p8_4c_jetmettau, "SVD", out_p8_4c_unfolded_bayes_p8_4c_jetmettau, "Bayes", "Bin-By-Bin - RooUnfold/True", "TUnfold/True", "SVD/True", "Bayes/True",  compare_unfolding_plots, "p8_4c_with_p8_4c_jetmettau_", true, detail);
 
 //method test
-///compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", out_p8_4c_gen_allvertex_jetmettau, "Generator Level", out_p8_4c_unfolded_bayes1_p8_4c_jetmettau, "Bayes: iterations = 1", out_p8_4c_unfolded_bayes2_p8_4c_jetmettau, "Bayes: iterations = 2", out_p8_4c_unfolded_bayes3_p8_4c_jetmettau, "Bayes: iterations = 3", out_p8_4c_unfolded_bayes4_p8_4c_jetmettau, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmettau_bayes_", true, detail);
+compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", out_p8_4c_gen_allvertex_jetmettau, "Generator Level", out_p8_4c_unfolded_bayes1_p8_4c_jetmettau, "Bayes: iterations = 1", out_p8_4c_unfolded_bayes2_p8_4c_jetmettau, "Bayes: iterations = 2", out_p8_4c_unfolded_bayes3_p8_4c_jetmettau, "Bayes: iterations = 3", out_p8_4c_unfolded_bayes4_p8_4c_jetmettau, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmettau_bayes_", true, detail);
 
-///compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", out_p8_4c_gen_allvertex_jetmettau, "Generator Level", out_p8_4c_unfolded_svd1_p8_4c_jetmettau, "SVD: regularization = 1", out_p8_4c_unfolded_svd2_p8_4c_jetmettau, "SVD: regularization = 2", out_p8_4c_unfolded_svd3_p8_4c_jetmettau, "SVD: regularization = 3", out_p8_4c_unfolded_svd4_p8_4c_jetmettau, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmettau_svd_", true, detail);
+compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", out_p8_4c_gen_allvertex_jetmettau, "Generator Level", out_p8_4c_unfolded_svd1_p8_4c_jetmettau, "SVD: regularization = 1", out_p8_4c_unfolded_svd2_p8_4c_jetmettau, "SVD: regularization = 2", out_p8_4c_unfolded_svd3_p8_4c_jetmettau, "SVD: regularization = 3", out_p8_4c_unfolded_svd4_p8_4c_jetmettau, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmettau_svd_", true, detail);
 
-///compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", out_p8_4c_gen_allvertex_jetmettau, "Generator Level", out_p8_4c_unfolded_tunfold_p8_4c_jetmettau, "TUnfold: Default", out_p8_4c_unfolded_tunfold2_p8_4c_jetmettau, "TUnfold: Size Regularization", out_p8_4c_unfolded_tunfold3_p8_4c_jetmettau, "TUnfold: Derivative Regularization", out_p8_4c_unfolded_tunfold4_p8_4c_jetmettau, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmettau_tunfold_", true, detail);
+compare_unfolding_results(out_p8_4c_det_allvertex_jetmettau, "Detector Level", out_p8_4c_gen_allvertex_jetmettau, "Generator Level", out_p8_4c_unfolded_tunfold_p8_4c_jetmettau, "TUnfold: Default", out_p8_4c_unfolded_tunfold2_p8_4c_jetmettau, "TUnfold: Size Regularization", out_p8_4c_unfolded_tunfold3_p8_4c_jetmettau, "TUnfold: Derivative Regularization", out_p8_4c_unfolded_tunfold4_p8_4c_jetmettau, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmettau_tunfold_", true, detail);
 
 
 //herwig eec3 - jetmettau
@@ -3455,11 +3455,11 @@ compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level",
 compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level", out_hw_eec3_gen_allvertex_jetmettau, "Generator Level", out_hw_eec3_unfolded_bbb_hw_eec3_jetmettau, "RooUnfold Bin-by-Bin", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold",  out_hw_eec3_unfolded_svd_hw_eec3_jetmettau, "SVD", out_hw_eec3_unfolded_bayes_hw_eec3_jetmettau, "Bayes", "Bin-By-Bin - RooUnfold/True", "TUnfold/True", "SVD/True", "Bayes/True",  compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmettau_", true, detail);
 
 //method test
-///compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level", out_hw_eec3_gen_allvertex_jetmettau, "Generator Level", out_hw_eec3_unfolded_bayes1_hw_eec3_jetmettau, "Bayes: iterations = 1", out_hw_eec3_unfolded_bayes2_hw_eec3_jetmettau, "Bayes: iterations = 2", out_hw_eec3_unfolded_bayes3_hw_eec3_jetmettau, "Bayes: iterations = 3", out_hw_eec3_unfolded_bayes4_hw_eec3_jetmettau, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmettau_bayes_", true, detail);
+compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level", out_hw_eec3_gen_allvertex_jetmettau, "Generator Level", out_hw_eec3_unfolded_bayes1_hw_eec3_jetmettau, "Bayes: iterations = 1", out_hw_eec3_unfolded_bayes2_hw_eec3_jetmettau, "Bayes: iterations = 2", out_hw_eec3_unfolded_bayes3_hw_eec3_jetmettau, "Bayes: iterations = 3", out_hw_eec3_unfolded_bayes4_hw_eec3_jetmettau, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmettau_bayes_", true, detail);
 
-///compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level", out_hw_eec3_gen_allvertex_jetmettau, "Generator Level", out_hw_eec3_unfolded_svd1_hw_eec3_jetmettau, "SVD: regularization = 1", out_hw_eec3_unfolded_svd2_hw_eec3_jetmettau, "SVD: regularization = 2", out_hw_eec3_unfolded_svd3_hw_eec3_jetmettau, "SVD: regularization = 3", out_hw_eec3_unfolded_svd4_hw_eec3_jetmettau, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmettau_svd_", true, detail);
+compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level", out_hw_eec3_gen_allvertex_jetmettau, "Generator Level", out_hw_eec3_unfolded_svd1_hw_eec3_jetmettau, "SVD: regularization = 1", out_hw_eec3_unfolded_svd2_hw_eec3_jetmettau, "SVD: regularization = 2", out_hw_eec3_unfolded_svd3_hw_eec3_jetmettau, "SVD: regularization = 3", out_hw_eec3_unfolded_svd4_hw_eec3_jetmettau, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmettau_svd_", true, detail);
 
-///compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level", out_hw_eec3_gen_allvertex_jetmettau, "Generator Level", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold: Default", out_hw_eec3_unfolded_tunfold2_hw_eec3_jetmettau, "TUnfold: Size Regularization", out_hw_eec3_unfolded_tunfold3_hw_eec3_jetmettau, "TUnfold: Derivative Regularization", out_hw_eec3_unfolded_tunfold4_hw_eec3_jetmettau, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: No Regularization/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmettau_tunfold_", true, detail);
+compare_unfolding_results(out_hw_eec3_det_allvertex_jetmettau, "Detector Level", out_hw_eec3_gen_allvertex_jetmettau, "Generator Level", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmettau, "TUnfold: Default", out_hw_eec3_unfolded_tunfold2_hw_eec3_jetmettau, "TUnfold: Size Regularization", out_hw_eec3_unfolded_tunfold3_hw_eec3_jetmettau, "TUnfold: Derivative Regularization", out_hw_eec3_unfolded_tunfold4_hw_eec3_jetmettau, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: No Regularization/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmettau_tunfold_", true, detail);
 
 
 //herwig 23 - jetmettau
@@ -3472,11 +3472,11 @@ compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level", o
 compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level",  out_hw_23_gen_allvertex_jetmettau, "Generator Level", out_hw_23_unfolded_bbb_hw_23_jetmettau, "RooUnfold Bin-by-Bin", out_hw_23_unfolded_tunfold_hw_23_jetmettau, "TUnfold", out_hw_23_unfolded_svd_hw_23_jetmettau, "SVD", out_hw_23_unfolded_bayes_hw_23_jetmettau, "Bayes", "Bin-By-Bin - RooUnfold/True", "TUnfold/True", "SVD/True", "Bayes/True",  compare_unfolding_plots, "hw_23_with_hw_23_jetmettau_", true, detail);
 
 //method test
-///compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level", out_hw_23_gen_allvertex_jetmettau, "Generator Level", out_hw_23_unfolded_bayes1_hw_23_jetmettau, "Bayes: iterations = 1", out_hw_23_unfolded_bayes2_hw_23_jetmettau, "Bayes: iterations = 2", out_hw_23_unfolded_bayes3_hw_23_jetmettau, "Bayes: iterations = 3", out_hw_23_unfolded_bayes4_hw_23_jetmettau, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmettau_bayes_", true, detail);
+compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level", out_hw_23_gen_allvertex_jetmettau, "Generator Level", out_hw_23_unfolded_bayes1_hw_23_jetmettau, "Bayes: iterations = 1", out_hw_23_unfolded_bayes2_hw_23_jetmettau, "Bayes: iterations = 2", out_hw_23_unfolded_bayes3_hw_23_jetmettau, "Bayes: iterations = 3", out_hw_23_unfolded_bayes4_hw_23_jetmettau, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmettau_bayes_", true, detail);
 
-///compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level", out_hw_23_gen_allvertex_jetmettau, "Generator Level", out_hw_23_unfolded_svd1_hw_23_jetmettau, "SVD: regularization = 1", out_hw_23_unfolded_svd2_hw_23_jetmettau, "SVD: regularization = 2", out_hw_23_unfolded_svd3_hw_23_jetmettau, "SVD: regularization = 3", out_hw_23_unfolded_svd4_hw_23_jetmettau, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmettau_svd_", true, detail);
+compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level", out_hw_23_gen_allvertex_jetmettau, "Generator Level", out_hw_23_unfolded_svd1_hw_23_jetmettau, "SVD: regularization = 1", out_hw_23_unfolded_svd2_hw_23_jetmettau, "SVD: regularization = 2", out_hw_23_unfolded_svd3_hw_23_jetmettau, "SVD: regularization = 3", out_hw_23_unfolded_svd4_hw_23_jetmettau, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmettau_svd_", true, detail);
 
-///compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level", out_hw_23_gen_allvertex_jetmettau, "Generator Level", out_hw_23_unfolded_tunfold_hw_23_jetmettau, "TUnfold: Default", out_hw_23_unfolded_tunfold2_hw_23_jetmettau, "TUnfold: Size Regularization", out_hw_23_unfolded_tunfold3_hw_23_jetmettau, "TUnfold: Derivative Regularization", out_hw_23_unfolded_tunfold4_hw_23_jetmettau, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "hw_23_with_hw_23_jetmettau_tunfold_", true, detail);
+compare_unfolding_results(out_hw_23_det_allvertex_jetmettau, "Detector Level", out_hw_23_gen_allvertex_jetmettau, "Generator Level", out_hw_23_unfolded_tunfold_hw_23_jetmettau, "TUnfold: Default", out_hw_23_unfolded_tunfold2_hw_23_jetmettau, "TUnfold: Size Regularization", out_hw_23_unfolded_tunfold3_hw_23_jetmettau, "TUnfold: Derivative Regularization", out_hw_23_unfolded_tunfold4_hw_23_jetmettau, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "hw_23_with_hw_23_jetmettau_tunfold_", true, detail);
 
 
 //pythia 8 - jetmet
@@ -3489,11 +3489,11 @@ compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_
 compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_p8_4c_gen_allvertex_jetmet, "Generator Level", out_p8_4c_unfolded_bbb_p8_4c_jetmet, "RooUnfold Bin-by-Bin", out_p8_4c_unfolded_tunfold_p8_4c_jetmet, "TUnfold", out_p8_4c_unfolded_svd_p8_4c_jetmet, "SVD",  out_p8_4c_unfolded_bayes_p8_4c_jetmet, "Bayes", "Bin-By-Bin - RooUnfold/True", "TUnfold/True", "SVD/True", "Bayes/True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmet_", true, detail);
 
 //method test
-///compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_p8_4c_gen_allvertex_jetmet, "Generator Level", out_p8_4c_unfolded_bayes1_p8_4c_jetmet, "Bayes: iterations = 1", out_p8_4c_unfolded_bayes2_p8_4c_jetmet, "Bayes: iterations = 2",  out_p8_4c_unfolded_bayes3_p8_4c_jetmet, "Bayes: iterations = 3", out_p8_4c_unfolded_bayes4_p8_4c_jetmet, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmet_bayes_", true, detail);
+compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_p8_4c_gen_allvertex_jetmet, "Generator Level", out_p8_4c_unfolded_bayes1_p8_4c_jetmet, "Bayes: iterations = 1", out_p8_4c_unfolded_bayes2_p8_4c_jetmet, "Bayes: iterations = 2",  out_p8_4c_unfolded_bayes3_p8_4c_jetmet, "Bayes: iterations = 3", out_p8_4c_unfolded_bayes4_p8_4c_jetmet, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmet_bayes_", true, detail);
 
-///compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_p8_4c_gen_allvertex_jetmet, "Generator Level", out_p8_4c_unfolded_svd1_p8_4c_jetmet, "SVD: regularization = 1", out_p8_4c_unfolded_svd2_p8_4c_jetmet, "SVD: regularization = 2",  out_p8_4c_unfolded_svd3_p8_4c_jetmet, "SVD: regularization = 3", out_p8_4c_unfolded_svd4_p8_4c_jetmet, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmet_svd_", true, detail);
+compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_p8_4c_gen_allvertex_jetmet, "Generator Level", out_p8_4c_unfolded_svd1_p8_4c_jetmet, "SVD: regularization = 1", out_p8_4c_unfolded_svd2_p8_4c_jetmet, "SVD: regularization = 2",  out_p8_4c_unfolded_svd3_p8_4c_jetmet, "SVD: regularization = 3", out_p8_4c_unfolded_svd4_p8_4c_jetmet, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmet_svd_", true, detail);
 
-///compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_p8_4c_gen_allvertex_jetmet, "Generator Level", out_p8_4c_unfolded_tunfold_p8_4c_jetmet, "TUnfold: Default", out_p8_4c_unfolded_tunfold2_p8_4c_jetmet, "TUnfold: Size Regularization",  out_p8_4c_unfolded_tunfold3_p8_4c_jetmet, "TUnfold: Derivative Regularization", out_p8_4c_unfolded_tunfold4_p8_4c_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmet_tunfold_", true, detail);
+compare_unfolding_results(out_p8_4c_det_allvertex_jetmet, "Detector Level", out_p8_4c_gen_allvertex_jetmet, "Generator Level", out_p8_4c_unfolded_tunfold_p8_4c_jetmet, "TUnfold: Default", out_p8_4c_unfolded_tunfold2_p8_4c_jetmet, "TUnfold: Size Regularization",  out_p8_4c_unfolded_tunfold3_p8_4c_jetmet, "TUnfold: Derivative Regularization", out_p8_4c_unfolded_tunfold4_p8_4c_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "p8_4c_with_p8_4c_jetmet_tunfold_", true, detail);
 
 
 
@@ -3507,11 +3507,11 @@ compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", ou
 compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_bbb_hw_eec3_jetmet, "RooUnfold Bin-by-Bin", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmet, "TUnfold", out_hw_eec3_unfolded_svd_hw_eec3_jetmet, "SVD", out_hw_eec3_unfolded_bayes_hw_eec3_jetmet, "Bayes", "Bin-By-Bin - RooUnfold/True", "TUnfold/True", "SVD/True", "Bayes/True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_", true, detail);
 
 //Method test
-///compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_bayes1_hw_eec3_jetmet, "Bayes: iterations = 1", out_hw_eec3_unfolded_bayes2_hw_eec3_jetmet, "Bayes: iterations = 2", out_hw_eec3_unfolded_bayes3_hw_eec3_jetmet, "Bayes: iterations = 3", out_hw_eec3_unfolded_bayes4_hw_eec3_jetmet, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_bayes_", true, detail);
+compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_bayes1_hw_eec3_jetmet, "Bayes: iterations = 1", out_hw_eec3_unfolded_bayes2_hw_eec3_jetmet, "Bayes: iterations = 2", out_hw_eec3_unfolded_bayes3_hw_eec3_jetmet, "Bayes: iterations = 3", out_hw_eec3_unfolded_bayes4_hw_eec3_jetmet, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_bayes_", true, detail);
 
-///compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_svd1_hw_eec3_jetmet, "SVD: regularization = 1", out_hw_eec3_unfolded_svd2_hw_eec3_jetmet, "SVD: regularization = 2", out_hw_eec3_unfolded_svd3_hw_eec3_jetmet, "SVD: regularization = 3", out_hw_eec3_unfolded_svd4_hw_eec3_jetmet, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_svd_", true, detail);
+compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_svd1_hw_eec3_jetmet, "SVD: regularization = 1", out_hw_eec3_unfolded_svd2_hw_eec3_jetmet, "SVD: regularization = 2", out_hw_eec3_unfolded_svd3_hw_eec3_jetmet, "SVD: regularization = 3", out_hw_eec3_unfolded_svd4_hw_eec3_jetmet, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_svd_", true, detail);
 
-///compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmet, "TUnfold: Default", out_hw_eec3_unfolded_tunfold2_hw_eec3_jetmet, "TUnfold: Size Regularization", out_hw_eec3_unfolded_tunfold3_hw_eec3_jetmet, "TUnfold: Derivative Regularization", out_hw_eec3_unfolded_tunfold4_hw_eec3_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_tunfold_", true, detail);
+compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmet, "TUnfold: Default", out_hw_eec3_unfolded_tunfold2_hw_eec3_jetmet, "TUnfold: Size Regularization", out_hw_eec3_unfolded_tunfold3_hw_eec3_jetmet, "TUnfold: Derivative Regularization", out_hw_eec3_unfolded_tunfold4_hw_eec3_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_tunfold_", true, detail);
 
 
 
@@ -3525,11 +3525,11 @@ compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_
 compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_hw_23_gen_allvertex_jetmet, "Generator Level", out_hw_23_unfolded_bbb_hw_23_jetmet, "RooUnfold Bin-by-Bin", out_hw_23_unfolded_tunfold_hw_23_jetmet, "TUnfold",  out_hw_23_unfolded_svd_hw_23_jetmet, "SVD", out_hw_23_unfolded_bayes_hw_23_jetmet, "Bayes", "Bin-By-Bin - RooUnfold/Standard", "TUnfold/Bin-by-Bin", "SVD/Bin-by-Bin", "Bayes/Bin-by-Bin", compare_unfolding_plots, "hw_23_with_hw_23_jetmet_", true, detail);
 
 //method test
-///compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_hw_23_gen_allvertex_jetmet, "Generator Level", out_hw_23_unfolded_bayes1_hw_23_jetmet, "Bayes: iterations = 1", out_hw_23_unfolded_bayes2_hw_23_jetmet, "Bayes: iterations = 2", out_hw_23_unfolded_bayes3_hw_23_jetmet, "Bayes: iterations = 3", out_hw_23_unfolded_bayes4_hw_23_jetmet, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmet_bayes_", true, detail);
+compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_hw_23_gen_allvertex_jetmet, "Generator Level", out_hw_23_unfolded_bayes1_hw_23_jetmet, "Bayes: iterations = 1", out_hw_23_unfolded_bayes2_hw_23_jetmet, "Bayes: iterations = 2", out_hw_23_unfolded_bayes3_hw_23_jetmet, "Bayes: iterations = 3", out_hw_23_unfolded_bayes4_hw_23_jetmet, "Bayes: iterations = 4", "Bayes: iterations = 1 /True", "Bayes: iterations = 2 /True", "Bayes: iterations = 3 /True", "Bayes: iterations = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmet_bayes_", true, detail);
 
-///compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_hw_23_gen_allvertex_jetmet, "Generator Level", out_hw_23_unfolded_svd1_hw_23_jetmet, "SVD: regularization = 1", out_hw_23_unfolded_svd2_hw_23_jetmet, "SVD: regularization = 2", out_hw_23_unfolded_svd3_hw_23_jetmet, "SVD: regularization = 3", out_hw_23_unfolded_svd4_hw_23_jetmet, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmet_svd_", true, detail);
+compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_hw_23_gen_allvertex_jetmet, "Generator Level", out_hw_23_unfolded_svd1_hw_23_jetmet, "SVD: regularization = 1", out_hw_23_unfolded_svd2_hw_23_jetmet, "SVD: regularization = 2", out_hw_23_unfolded_svd3_hw_23_jetmet, "SVD: regularization = 3", out_hw_23_unfolded_svd4_hw_23_jetmet, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_23_with_hw_23_jetmet_svd_", true, detail);
 
-///compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_hw_23_gen_allvertex_jetmet, "Generator Level", out_hw_23_unfolded_tunfold_hw_23_jetmet, "TUnfold: Default", out_hw_23_unfolded_tunfold2_hw_23_jetmet, "TUnfold: Size Regularization", out_hw_23_unfolded_tunfold3_hw_23_jetmet, "TUnfold: Derivative Regularization", out_hw_23_unfolded_tunfold4_hw_23_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "hw_23_with_hw_23_jetmet_tunfold_", true, detail);
+compare_unfolding_results(out_hw_23_det_allvertex_jetmet, "Detector Level", out_hw_23_gen_allvertex_jetmet, "Generator Level", out_hw_23_unfolded_tunfold_hw_23_jetmet, "TUnfold: Default", out_hw_23_unfolded_tunfold2_hw_23_jetmet, "TUnfold: Size Regularization", out_hw_23_unfolded_tunfold3_hw_23_jetmet, "TUnfold: Derivative Regularization", out_hw_23_unfolded_tunfold4_hw_23_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "hw_23_with_hw_23_jetmet_tunfold_", true, detail);
 
 
 }

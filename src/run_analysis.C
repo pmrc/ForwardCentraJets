@@ -113,10 +113,10 @@ void run_analysis()
 //plot directories
   string trigger_syst_plots = output_dir + "trigger_systematic/";
   string trigger_plots = output_dir + "trigger_eff/";
-  string trigger_corr_plots = output_dir + "trigger_correction/";
+  string trigger_corr_plots = output_dir + "../../../../../scratch0/output/trigger_correction/";
   string vertex_weights_plots = output_dir + "vertex_weights/";
-  string resolution_plots = output_dir + "resolution/";
-  string mc_norm_plots = output_dir + "normalized_mc/";
+  string resolution_plots = output_dir + "../../../../../scratch0/output/resolution/";
+  string mc_norm_plots = output_dir + "../../../../../scratch0/output/normalized_mc/";
   string control_plots = output_dir + "control_dist/";
   string corrections_plots = output_dir + "corrections/";
   string sel_corrections_plots = output_dir + "sel_corrections/";
@@ -2522,7 +2522,7 @@ if (show_steps) { cout << "Pythia6 Z2starTune"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", "", "", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMETTau_2010A"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_gen_nopileup_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
-read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
+//read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_nopileup_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmettau_notnorm_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmettau_notnorm_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMET_2010A"<<endl; }

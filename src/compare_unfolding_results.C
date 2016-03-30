@@ -900,6 +900,36 @@ void compare_unfolding_results(string infile1, TString label1, string infile2, T
     data_delta_phi_deta3_nogap->SetTitle("#Delta#phi;#Delta#phi [rad];#frac{d#sigma^2}{d#Delta#eta d#Delta#phi} [#frac{pb}{rad}]");
 
 
+//plot delta phi deta3 nogap norm unfolding results
+    if (detail) { cout << "Plotting Delta Phi Deta3 Normalized Nogap Unfolding Results..." << endl; }
+
+    TH1D *data_delta_phi_deta3_nogap_norm = 0;
+    file1->GetObject("ak5PF_delta_phi_deta3_nogap_norm",data_delta_phi_deta3_nogap_norm);
+    if (data_delta_phi_deta3_nogap_norm == 0) { cout << "ak5PF_delta_phi_deta3_nogap_norm not found!" << endl; return; }
+    TH1D *sbbb_delta_phi_deta3_nogap_norm = 0;
+    file2->GetObject(load_prefix+"delta_phi_deta3_nogap_norm",sbbb_delta_phi_deta3_nogap_norm);
+    if (sbbb_delta_phi_deta3_nogap_norm == 0) { cout << load_prefix << "delta_phi_deta3_nogap_norm not found!" << endl; return; }
+    TH1D *rbbb_delta_phi_deta3_nogap_norm = 0;
+    file3->GetObject("output_true_delta_phi_deta3_nogap_norm",rbbb_delta_phi_deta3_nogap_norm);
+    if (rbbb_delta_phi_deta3_nogap_norm == 0) { cout << "rbbb_delta_phi_deta3_nogap_norm not found!" << endl; return; }
+    TH1D *tunf_delta_phi_deta3_nogap_norm = 0;
+    file4->GetObject("output_true_delta_phi_deta3_nogap_norm",tunf_delta_phi_deta3_nogap_norm);
+    if (tunf_delta_phi_deta3_nogap_norm == 0) { cout << "tunf_delta_phi_deta3_nogap_norm not found!" << endl; return; }
+    TH1D *svd_delta_phi_deta3_nogap_norm = 0;
+    file5->GetObject("output_true_delta_phi_deta3_nogap_norm",svd_delta_phi_deta3_nogap_norm);
+    if (svd_delta_phi_deta3_nogap_norm == 0) { cout << "svd_delta_phi_deta3_nogap_norm not found!" << endl; return; }
+    TH1D *baye_delta_phi_deta3_nogap_norm = 0;
+    file6->GetObject("output_true_delta_phi_deta3_nogap_norm",baye_delta_phi_deta3_nogap_norm);
+    if (baye_delta_phi_deta3_nogap_norm == 0) { cout << "baye_delta_phi_deta3_nogap_norm not found!" << endl; return; }
+
+    data_delta_phi_deta3_nogap_norm->SetTitle("#Delta#phi Norm;#Delta#phi [rad];#frac{d#sigma^2}{d#Delta#eta d#Delta#phi} [#frac{pb}{rad}]");
+    plot_six_dist(data_delta_phi_deta3_nogap_norm, label1, sbbb_delta_phi_deta3_nogap_norm, label2, rbbb_delta_phi_deta3_nogap_norm, label3, tunf_delta_phi_deta3_nogap_norm, label4, svd_delta_phi_deta3_nogap_norm, label5, baye_delta_phi_deta3_nogap_norm, label6, plots_path, prefix, "delta_phi_deta3_nogap_norm", "top_left", detail);
+    plot_3histograms(data_delta_phi_deta3_nogap_norm, label1, sbbb_delta_phi_deta3_nogap_norm, label2, baye_delta_phi_deta3_nogap_norm, label6, plots_path, prefix+"delta_phi_deta3_nogap_norm_simple", "top_left", detail);
+    data_delta_phi_deta3_nogap_norm->SetTitle("#Delta#phi Norm;#Delta#phi [rad];Ratio");
+    plots_unfolding_ratios(sbbb_delta_phi_deta3_nogap_norm, rbbb_delta_phi_deta3_nogap_norm, ratiolabel1, tunf_delta_phi_deta3_nogap_norm, ratiolabel2, svd_delta_phi_deta3_nogap_norm, ratiolabel3, baye_delta_phi_deta3_nogap_norm, ratiolabel4, plots_path, prefix+"delta_phi_deta3_nogap_norm_ratios", detail);
+    data_delta_phi_deta3_nogap_norm->SetTitle("#Delta#phi Norm;#Delta#phi [rad];#frac{d#sigma^2}{d#Delta#eta d#Delta#phi} [#frac{pb}{rad}]");
+
+
 //plot delta phi deta4 nogap unfolding results
     if (detail) { cout << "Plotting Delta Phi Deta4 Nogap Unfolding Results..." << endl; }
 
@@ -928,6 +958,38 @@ void compare_unfolding_results(string infile1, TString label1, string infile2, T
     data_delta_phi_deta4_nogap->SetTitle("#Delta#phi;#Delta#phi [rad];Ratio");
     plots_unfolding_ratios(sbbb_delta_phi_deta4_nogap, rbbb_delta_phi_deta4_nogap, ratiolabel1, tunf_delta_phi_deta4_nogap, ratiolabel2, svd_delta_phi_deta4_nogap, ratiolabel3, baye_delta_phi_deta4_nogap, ratiolabel4, plots_path, prefix+"delta_phi_deta4_nogap_ratios", detail);
     data_delta_phi_deta4_nogap->SetTitle("#Delta#phi;#Delta#phi [rad];#frac{d#sigma^2}{d#Delta#eta d#Delta#phi} [#frac{pb}{rad}]");
+
+
+//plot delta phi deta4 nogap norm unfolding results
+    if (detail) { cout << "Plotting Delta Phi Deta4 Nogap Normalized Unfolding Results..." << endl; }
+
+    TH1D *data_delta_phi_deta4_nogap_norm = 0;
+    file1->GetObject("ak5PF_delta_phi_deta4_nogap_norm",data_delta_phi_deta4_nogap_norm);
+    if (data_delta_phi_deta4_nogap_norm == 0) { cout << "ak5PF_delta_phi_deta4_nogap_norm not found!" << endl; return; }
+    TH1D *sbbb_delta_phi_deta4_nogap_norm = 0;
+    file2->GetObject(load_prefix+"delta_phi_deta4_nogap_norm",sbbb_delta_phi_deta4_nogap_norm);
+    if (sbbb_delta_phi_deta4_nogap_norm == 0) { cout << load_prefix << "delta_phi_deta4_nogap_norm not found!" << endl; return; }
+    TH1D *rbbb_delta_phi_deta4_nogap_norm = 0;
+    file3->GetObject("output_true_delta_phi_deta4_nogap_norm",rbbb_delta_phi_deta4_nogap_norm);
+    if (rbbb_delta_phi_deta4_nogap_norm == 0) { cout << "rbbb_delta_phi_deta4_nogap_norm not found!" << endl; return; }
+    TH1D *tunf_delta_phi_deta4_nogap_norm = 0;
+    file4->GetObject("output_true_delta_phi_deta4_nogap_norm",tunf_delta_phi_deta4_nogap_norm);
+    if (tunf_delta_phi_deta4_nogap_norm == 0) { cout << "tunf_delta_phi_deta4_nogap_norm not found!" << endl; return; }
+    TH1D *svd_delta_phi_deta4_nogap_norm = 0;
+    file5->GetObject("output_true_delta_phi_deta4_nogap_norm",svd_delta_phi_deta4_nogap_norm);
+    if (svd_delta_phi_deta4_nogap_norm == 0) { cout << "svd_delta_phi_deta4_nogap_norm not found!" << endl; return; }
+    TH1D *baye_delta_phi_deta4_nogap_norm = 0;
+    file6->GetObject("output_true_delta_phi_deta4_nogap_norm",baye_delta_phi_deta4_nogap_norm);
+    if (baye_delta_phi_deta4_nogap_norm == 0) { cout << "baye_delta_phi_deta4_nogap_norm not found!" << endl; return; }
+
+    data_delta_phi_deta4_nogap_norm->SetTitle("#Delta#phi Norm;#Delta#phi [rad];#frac{d#sigma^2}{d#Delta#eta d#Delta#phi} [#frac{pb}{rad}]");
+    plot_six_dist(data_delta_phi_deta4_nogap_norm, label1, sbbb_delta_phi_deta4_nogap_norm, label2, rbbb_delta_phi_deta4_nogap_norm, label3, tunf_delta_phi_deta4_nogap_norm, label4, svd_delta_phi_deta4_nogap_norm, label5, baye_delta_phi_deta4_nogap_norm, label6, plots_path, prefix, "delta_phi_deta4_nogap_norm", "top_left", detail);
+    plot_3histograms(data_delta_phi_deta4_nogap_norm, label1, sbbb_delta_phi_deta4_nogap_norm, label2, baye_delta_phi_deta4_nogap_norm, label6, plots_path, prefix+"delta_phi_deta4_nogap_norm_simple", "top_left", detail);
+    data_delta_phi_deta4_nogap_norm->SetTitle("#Delta#phi Norm;#Delta#phi [rad];Ratio");
+    plots_unfolding_ratios(sbbb_delta_phi_deta4_nogap_norm, rbbb_delta_phi_deta4_nogap_norm, ratiolabel1, tunf_delta_phi_deta4_nogap_norm, ratiolabel2, svd_delta_phi_deta4_nogap_norm, ratiolabel3, baye_delta_phi_deta4_nogap_norm, ratiolabel4, plots_path, prefix+"delta_phi_deta4_nogap_norm_ratios", detail);
+    data_delta_phi_deta4_nogap_norm->SetTitle("#Delta#phi Norm;#Delta#phi [rad];#frac{d#sigma^2}{d#Delta#eta d#Delta#phi} [#frac{pb}{rad}]");
+
+
 
 
 //plot leading pt inside gap unfolding results
@@ -959,6 +1021,38 @@ void compare_unfolding_results(string infile1, TString label1, string infile2, T
     plots_unfolding_ratios(sbbb_leading_pt_inside_gap, rbbb_leading_pt_inside_gap, ratiolabel1,  tunf_leading_pt_inside_gap, ratiolabel2, svd_leading_pt_inside_gap, ratiolabel3, baye_leading_pt_inside_gap, ratiolabel4, plots_path, prefix+"leading_pt_inside_gap_ratios", detail);
     data_leading_pt_inside_gap->SetTitle("p_{T}^{inside};p_{T}^{inside} [GeV];#frac{d#sigma}{dp_{T}^{inside}} [#frac{pb}{GeV}]");
 
+
+//plot leading pt inside gap norm unfolding results
+    if (detail) { cout << "Plotting Leading pT Inside Gap Normalized Unfolding Results..." << endl; }
+
+    TH1D *data_leading_pt_inside_gap_norm = 0;
+    file1->GetObject("ak5PF_leading_pt_inside_gap_norm",data_leading_pt_inside_gap_norm);
+    if (data_leading_pt_inside_gap_norm == 0) { cout << "ak5PF_leading_pt_inside_gap_norm not found!" << endl; return; }
+    TH1D *sbbb_leading_pt_inside_gap_norm = 0;
+    file2->GetObject(load_prefix+"leading_pt_inside_gap_norm",sbbb_leading_pt_inside_gap_norm);
+    if (sbbb_leading_pt_inside_gap_norm == 0) { cout << load_prefix << "leading_pt_inside_gap_norm not found!" << endl; return; }
+    TH1D *rbbb_leading_pt_inside_gap_norm = 0;
+    file3->GetObject("output_true_leading_pt_inside_gap_norm",rbbb_leading_pt_inside_gap_norm);
+    if (rbbb_leading_pt_inside_gap_norm == 0) { cout << "rbbb_leading_pt_inside_gap_norm not found!" << endl; return; }
+    TH1D *tunf_leading_pt_inside_gap_norm = 0;
+    file4->GetObject("output_true_leading_pt_inside_gap_norm",tunf_leading_pt_inside_gap_norm);
+    if (tunf_leading_pt_inside_gap_norm == 0) { cout << "tunf_leading_pt_inside_gap_norm not found!" << endl; return; }
+    TH1D *svd_leading_pt_inside_gap_norm = 0;
+    file5->GetObject("output_true_leading_pt_inside_gap_norm",svd_leading_pt_inside_gap_norm);
+    if (svd_leading_pt_inside_gap_norm == 0) { cout << "svd_leading_pt_inside_gap_norm not found!" << endl; return; }
+    TH1D *baye_leading_pt_inside_gap_norm = 0;
+    file6->GetObject("output_true_leading_pt_inside_gap_norm",baye_leading_pt_inside_gap_norm);
+    if (baye_leading_pt_inside_gap_norm == 0) { cout << "baye_leading_pt_inside_gap_norm not found!" << endl; return; }
+
+    data_leading_pt_inside_gap_norm->SetTitle("p_{T}^{inside} Norm;p_{T}^{inside} [GeV];#frac{d#sigma}{dp_{T}^{inside}} [#frac{pb}{GeV}]");
+    plot_six_dist(data_leading_pt_inside_gap_norm, label1, sbbb_leading_pt_inside_gap_norm, label2, rbbb_leading_pt_inside_gap_norm, label3, tunf_leading_pt_inside_gap_norm, label4, svd_leading_pt_inside_gap_norm, label5, baye_leading_pt_inside_gap_norm, label6, plots_path, prefix, "leading_pt_inside_gap_norm", "top_right", detail); 
+    plot_3histograms(data_leading_pt_inside_gap_norm, label1, sbbb_leading_pt_inside_gap_norm, label2, baye_leading_pt_inside_gap_norm, label6, plots_path, prefix+"leading_pt_inside_gap_norm_simple", "top_right", detail);
+    data_leading_pt_inside_gap_norm->SetTitle("p_{T}^{inside} Norm;p_{T}^{inside} [GeV];Ratio");
+    plots_unfolding_ratios(sbbb_leading_pt_inside_gap_norm, rbbb_leading_pt_inside_gap_norm, ratiolabel1,  tunf_leading_pt_inside_gap_norm, ratiolabel2, svd_leading_pt_inside_gap_norm, ratiolabel3, baye_leading_pt_inside_gap_norm, ratiolabel4, plots_path, prefix+"leading_pt_inside_gap_norm_ratios", detail);
+    data_leading_pt_inside_gap_norm->SetTitle("p_{T}^{inside} Norm;p_{T}^{inside} [GeV];#frac{d#sigma}{dp_{T}^{inside}} [#frac{pb}{GeV}]");
+
+
+
 //plot leading eta star inside gap unfolding results
     if (detail) { cout << "Plotting Leading Eta* Inside Gap Unfolding Results..." << endl; }
 
@@ -987,6 +1081,38 @@ void compare_unfolding_results(string infile1, TString label1, string infile2, T
     data_leading_eta_star_inside_gap->SetTitle("#eta*;#eta*;Ratio");
     plots_unfolding_ratios(sbbb_leading_eta_star_inside_gap, rbbb_leading_eta_star_inside_gap, ratiolabel1, tunf_leading_eta_star_inside_gap, ratiolabel2, svd_leading_eta_star_inside_gap, ratiolabel3, baye_leading_eta_star_inside_gap, ratiolabel4, plots_path, prefix+"leading_eta_star_inside_gap_ratios", detail);
     data_leading_eta_star_inside_gap->SetTitle("#eta*;#eta*;#frac{d#sigma}{d#eta*} [pb]");
+
+
+//plot leading eta star inside gap unfolding norm results
+    if (detail) { cout << "Plotting Leading Eta* Inside Gap Normalized Unfolding Results..." << endl; }
+
+    TH1D *data_leading_eta_star_inside_gap_norm = 0;
+    file1->GetObject("ak5PF_leading_eta_star_inside_gap_norm",data_leading_eta_star_inside_gap_norm);
+    if (data_leading_eta_star_inside_gap_norm == 0) { cout << "ak5PF_leading_eta_star_inside_gap_norm not found!" << endl; return; }
+    TH1D *sbbb_leading_eta_star_inside_gap_norm = 0;
+    file2->GetObject(load_prefix+"leading_eta_star_inside_gap_norm", sbbb_leading_eta_star_inside_gap_norm);
+    if (sbbb_leading_eta_star_inside_gap_norm == 0) { cout << load_prefix << "leading_eta_star_inside_gap_norm not found!" << endl; return; }
+    TH1D *rbbb_leading_eta_star_inside_gap_norm = 0;
+    file3->GetObject("output_true_leading_eta_star_inside_gap_norm", rbbb_leading_eta_star_inside_gap_norm);
+    if (rbbb_leading_eta_star_inside_gap_norm == 0) { cout << "rbbb_leading_eta_star_inside_gap_norm not found!" << endl; return; }
+    TH1D *tunf_leading_eta_star_inside_gap_norm = 0;
+    file4->GetObject("output_true_leading_eta_star_inside_gap_norm",tunf_leading_eta_star_inside_gap_norm);
+    if (tunf_leading_eta_star_inside_gap_norm == 0) { cout << "tunf_leading_eta_star_inside_gap_norm not found!" << endl; return; }
+    TH1D *svd_leading_eta_star_inside_gap_norm = 0;
+    file5->GetObject("output_true_leading_eta_star_inside_gap_norm",svd_leading_eta_star_inside_gap_norm);
+    if (svd_leading_eta_star_inside_gap_norm == 0) { cout << "svd_leading_eta_star_inside_gap_norm not found!" << endl; return; }
+    TH1D *baye_leading_eta_star_inside_gap_norm = 0;
+    file6->GetObject("output_true_leading_eta_star_inside_gap_norm",baye_leading_eta_star_inside_gap_norm);
+    if (baye_leading_eta_star_inside_gap_norm == 0) { cout << "baye_leading_eta_star_inside_gap_norm not found!" << endl; return; }
+
+    data_leading_eta_star_inside_gap_norm->SetTitle("#eta* Norm;#eta*;#frac{d#sigma}{d#eta*} [pb]");
+    plot_six_dist(data_leading_eta_star_inside_gap_norm, label1, sbbb_leading_eta_star_inside_gap_norm, label2, rbbb_leading_eta_star_inside_gap_norm, label3, tunf_leading_eta_star_inside_gap_norm, label4, svd_leading_eta_star_inside_gap_norm, label5, baye_leading_eta_star_inside_gap_norm, label6, plots_path, prefix, "leading_eta_star_inside_gap_norm", "bottom_middle", detail);
+    plot_3histograms(data_leading_eta_star_inside_gap_norm, label1, sbbb_leading_eta_star_inside_gap_norm, label2, baye_leading_eta_star_inside_gap_norm, label6, plots_path, prefix+"leading_eta_star_inside_gap_norm_simple", "bottom_middle", detail);
+    data_leading_eta_star_inside_gap_norm->SetTitle("#eta* Norm;#eta*;Ratio");
+    plots_unfolding_ratios(sbbb_leading_eta_star_inside_gap_norm, rbbb_leading_eta_star_inside_gap_norm, ratiolabel1, tunf_leading_eta_star_inside_gap_norm, ratiolabel2, svd_leading_eta_star_inside_gap_norm, ratiolabel3, baye_leading_eta_star_inside_gap_norm, ratiolabel4, plots_path, prefix+"leading_eta_star_inside_gap_norm_ratios", detail);
+    data_leading_eta_star_inside_gap_norm->SetTitle("#eta* Norm;#eta*;#frac{d#sigma}{d#eta*} [pb]");
+
+
 
 //plot leading pt outside gap unfolding results
     if (detail) { cout << "Plotting Leading pT Outside Gap Unfolding Results..." << endl; }
@@ -1018,6 +1144,40 @@ void compare_unfolding_results(string infile1, TString label1, string infile2, T
     data_leading_pt_outside_gap->SetTitle("p_{T}^{inside};p_{T}^{inside} [GeV];#frac{d#sigma}{dp_{T}^{inside}} [#frac{pb}{GeV}]");
 
 
+//plot leading pt outside gap norm unfolding results
+    if (detail) { cout << "Plotting Leading pT Outside Gap Normalized Unfolding Results..." << endl; }
+
+    TH1D *data_leading_pt_outside_gap_norm = 0;
+    file1->GetObject("ak5PF_leading_pt_outside_gap_norm",data_leading_pt_outside_gap_norm);
+    if (data_leading_pt_outside_gap_norm == 0) { cout << "ak5PF_leading_pt_outside_gap_norm not found!" << endl; return; }
+    TH1D *sbbb_leading_pt_outside_gap_norm = 0;
+    file2->GetObject(load_prefix+"leading_pt_outside_gap_norm",sbbb_leading_pt_outside_gap_norm);
+    if (sbbb_leading_pt_outside_gap_norm == 0) { cout << load_prefix << "leading_pt_outside_gap_norm not found!" << endl; return; }
+    TH1D *rbbb_leading_pt_outside_gap_norm = 0;
+    file3->GetObject("output_true_leading_pt_outside_gap_norm",rbbb_leading_pt_outside_gap_norm);
+    if (rbbb_leading_pt_outside_gap_norm == 0) { cout << "rbbb_leading_pt_outside_gap_norm not found!" << endl; return; }
+    TH1D *tunf_leading_pt_outside_gap_norm = 0;
+    file4->GetObject("output_true_leading_pt_outside_gap_norm",tunf_leading_pt_outside_gap_norm);
+    if (tunf_leading_pt_outside_gap_norm == 0) { cout << "tunf_leading_pt_outside_gap_norm not found!" << endl; return; }
+    TH1D *svd_leading_pt_outside_gap_norm = 0;
+    file5->GetObject("output_true_leading_pt_outside_gap_norm",svd_leading_pt_outside_gap_norm);
+    if (svd_leading_pt_outside_gap_norm == 0) { cout << "svd_leading_pt_outside_gap_norm not found!" << endl; return; }
+    TH1D *baye_leading_pt_outside_gap_norm = 0;
+    file6->GetObject("output_true_leading_pt_outside_gap_norm",baye_leading_pt_outside_gap_norm);
+    if (baye_leading_pt_outside_gap_norm == 0) { cout << "baye_leading_pt_outside_gap_norm not found!" << endl; return; }
+
+    data_leading_pt_outside_gap_norm->SetTitle("p_{T}^{outside} Norm;p_{T}^{outside} [GeV];#frac{d#sigma}{dp_{T}^{outside}} [#frac{pb}{GeV}]");
+    plot_six_dist(data_leading_pt_outside_gap_norm, label1, sbbb_leading_pt_outside_gap_norm, label2, rbbb_leading_pt_outside_gap_norm, label3, tunf_leading_pt_outside_gap_norm, label4, svd_leading_pt_outside_gap_norm, label5, baye_leading_pt_outside_gap_norm, label6, plots_path, prefix, "leading_pt_outside_gap_norm", "top_right", detail);    
+    plot_3histograms(data_leading_pt_outside_gap_norm, label1, sbbb_leading_pt_outside_gap_norm, label2,  baye_leading_pt_outside_gap_norm, label6, plots_path, prefix+"leading_pt_outside_gap_norm_simple", "top_right", detail);
+    data_leading_pt_outside_gap_norm->SetTitle("p_{T}^{inside} Norm;p_{T}^{inside} [GeV];Ratio");   
+    plots_unfolding_ratios(sbbb_leading_pt_outside_gap_norm, rbbb_leading_pt_outside_gap_norm, ratiolabel1, tunf_leading_pt_outside_gap_norm, ratiolabel2, svd_leading_pt_outside_gap_norm, ratiolabel3, baye_leading_pt_outside_gap_norm, ratiolabel4, plots_path, prefix+"leading_pt_outside_gap_norm_ratios", detail);
+    data_leading_pt_outside_gap_norm->SetTitle("p_{T}^{inside} Norm;p_{T}^{inside} [GeV];#frac{d#sigma}{dp_{T}^{inside}} [#frac{pb}{GeV}]");
+
+
+
+
+
+
 //plot delta eta outside gap unfolding results
     if (detail) { cout << "Plotting Delta Eta Outside Gap Unfolding Results..." << endl; }
 
@@ -1046,5 +1206,36 @@ void compare_unfolding_results(string infile1, TString label1, string infile2, T
     data_delta_eta_outside_gap->SetTitle("#Delta#eta^{out};#Delta#eta^{out};Ratio");
     plots_unfolding_ratios(sbbb_delta_eta_outside_gap, rbbb_delta_eta_outside_gap, ratiolabel1, tunf_delta_eta_outside_gap, ratiolabel2, svd_delta_eta_outside_gap, ratiolabel3, baye_delta_eta_outside_gap, ratiolabel4, plots_path, prefix+"delta_eta_outside_gap_ratios", detail);
     data_delta_eta_outside_gap->SetTitle("#Delta#eta^{out};#Delta#eta^{out};#frac{d#sigma}{d#Delta#eta^{out}} [pb]");
+
+
+//plot delta eta outside gap Norm unfolding results
+    if (detail) { cout << "Plotting Delta Eta Outside Gap Norm Unfolding Results..." << endl; }
+
+    TH1D *data_delta_eta_outside_gap_norm = 0;
+    file1->GetObject("ak5PF_delta_eta_outside_gap_norm",data_delta_eta_outside_gap_norm);
+    if (data_delta_eta_outside_gap_norm == 0) { cout << "ak5PF_delta_eta_outside_gap_norm not found!" << endl; return; }
+    TH1D *sbbb_delta_eta_outside_gap_norm = 0;
+    file2->GetObject(load_prefix+"delta_eta_outside_gap_norm",sbbb_delta_eta_outside_gap_norm);
+    if (sbbb_delta_eta_outside_gap_norm == 0) { cout << load_prefix << "delta_eta_outside_gap_norm not found!" << endl; return; }
+    TH1D *rbbb_delta_eta_outside_gap_norm = 0;
+    file3->GetObject("output_true_delta_eta_outside_gap_norm",rbbb_delta_eta_outside_gap_norm);
+    if (rbbb_delta_eta_outside_gap_norm == 0) { cout << "rbbb_delta_eta_outside_gap_norm not found!" << endl; return; }
+    TH1D *tunf_delta_eta_outside_gap_norm = 0;
+    file4->GetObject("output_true_delta_eta_outside_gap_norm",tunf_delta_eta_outside_gap_norm);
+    if (tunf_delta_eta_outside_gap_norm == 0) { cout << "tunf_delta_eta_outside_gap_norm not found!" << endl; return; }
+    TH1D *svd_delta_eta_outside_gap_norm = 0;
+    file5->GetObject("output_true_delta_eta_outside_gap_norm",svd_delta_eta_outside_gap_norm);
+    if (svd_delta_eta_outside_gap_norm == 0) { cout << "svd_delta_eta_outside_gap_norm not found!" << endl; return; }
+    TH1D *baye_delta_eta_outside_gap_norm = 0;
+    file6->GetObject("output_true_delta_eta_outside_gap_norm",baye_delta_eta_outside_gap_norm);
+    if (baye_delta_eta_outside_gap_norm == 0) { cout << "baye_delta_eta_outside_gap_norm not found!" << endl; return; }
+
+    data_delta_eta_outside_gap_norm->SetTitle("#Delta#eta^{out} Norm;#Delta#eta^{out};#frac{d#sigma}{d#Delta#eta^{out}} [pb]");
+    plot_six_dist(data_delta_eta_outside_gap_norm, label1, sbbb_delta_eta_outside_gap_norm, label2, rbbb_delta_eta_outside_gap_norm, label3, tunf_delta_eta_outside_gap_norm, label4, svd_delta_eta_outside_gap_norm, label5, baye_delta_eta_outside_gap_norm, label6, plots_path, prefix, "delta_eta_outside_gap_norm", "bottom_left", detail);
+    plot_3histograms(data_delta_eta_outside_gap_norm, label1, sbbb_delta_eta_outside_gap_norm, label2, baye_delta_eta_outside_gap_norm, label6, plots_path, prefix+"delta_eta_outside_gap_norm_simple", "top_right", detail);
+    data_delta_eta_outside_gap_norm->SetTitle("#Delta#eta^{out} Norm;#Delta#eta^{out};Ratio");
+    plots_unfolding_ratios(sbbb_delta_eta_outside_gap_norm, rbbb_delta_eta_outside_gap_norm, ratiolabel1, tunf_delta_eta_outside_gap_norm, ratiolabel2, svd_delta_eta_outside_gap_norm, ratiolabel3, baye_delta_eta_outside_gap_norm, ratiolabel4, plots_path, prefix+"delta_eta_outside_gap_norm_ratios", detail);
+    data_delta_eta_outside_gap_norm->SetTitle("#Delta#eta^{out} Norm;#Delta#eta^{out};#frac{d#sigma}{d#Delta#eta^{out}} [pb]");
+
 
 }

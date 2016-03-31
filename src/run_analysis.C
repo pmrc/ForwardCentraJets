@@ -2527,7 +2527,7 @@ if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetM
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmettau_notnorm_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMET_2010A"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_gen_nopileup_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
-read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
+//read_ntuple(mc_p6_z2, out_p6_z2_gen_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmet_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_nopileup_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "nopileup", vertex_weights_p6_z2_jetmet_notnorm_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_notnorm_gen_allvertex_jetmet, lumi_p6_z2, n_files_p6_z2, "MC_GEN", "allvertex", vertex_weights_p6_z2_jetmet_notnorm_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match Jet_2010B"<<endl; }

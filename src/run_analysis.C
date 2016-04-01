@@ -50,7 +50,7 @@ void run_analysis()
   bool compute_resolution = false;
   bool plot_resolution = false;
   bool get_pileup_normalization = false;
-  bool read_mc_ntuples_gen = true; //needs p6 for unfolding
+  bool read_mc_ntuples_gen = false; //done
   bool read_mc_ntuples_det = true; //needs p6 for unfolding
   bool read_data_ntuples = false; //done
   bool check_cross_section = false; //done
@@ -2596,7 +2596,7 @@ if (show_steps) { cout << "Pythia6 Z2starTune"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", "", "", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMETTau_2010A"<<endl; }
 //read_ntuple(mc_p6_z2, out_p6_z2_det_1vertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_DET", "1vertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
-read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
+//read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau, lumi_p6_z2, n_files_p6_z2, "MC_DET", "allvertex", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau_up, lumi_p6_z2, n_files_p6_z2, "MC_DET", "up", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 //read_ntuple(mc_p6_z2, out_p6_z2_det_allvertex_jetmettau_down, lumi_p6_z2, n_files_p6_z2, "MC_DET", "down", vertex_weights_p6_z2_jetmettau_v5, "_v5", detail, test);
 if (show_steps) { cout << "Pythia6 Z2starTune with Vertex Reweight to match JetMET_2010A"<<endl; }
@@ -3511,7 +3511,7 @@ compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", ou
 
 compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_svd1_hw_eec3_jetmet, "SVD: regularization = 1", out_hw_eec3_unfolded_svd2_hw_eec3_jetmet, "SVD: regularization = 2", out_hw_eec3_unfolded_svd3_hw_eec3_jetmet, "SVD: regularization = 3", out_hw_eec3_unfolded_svd4_hw_eec3_jetmet, "SVD: regularization = 4", "SVD: regularization = 1 /True", "SVD: regularization = 2 /True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_svd_", true, detail);
 
-compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmet, "TUnfold: Default", out_hw_eec3_unfolded_tunfold2_hw_eec3_jetmet, "TUnfold: Size Regularization", out_hw_eec3_unfolded_tunfold3_hw_eec3_jetmet, "TUnfold: Derivative Regularization", out_hw_eec3_unfolded_tunfold4_hw_eec3_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "SVD: regularization = 3 /True", "SVD: regularization = 4 /True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_tunfold_", true, detail);
+compare_unfolding_results(out_hw_eec3_det_allvertex_jetmet, "Detector Level", out_hw_eec3_gen_allvertex_jetmet, "Generator Level", out_hw_eec3_unfolded_tunfold_hw_eec3_jetmet, "TUnfold: Default", out_hw_eec3_unfolded_tunfold2_hw_eec3_jetmet, "TUnfold: Size Regularization", out_hw_eec3_unfolded_tunfold3_hw_eec3_jetmet, "TUnfold: Derivative Regularization", out_hw_eec3_unfolded_tunfold4_hw_eec3_jetmet, "TUnfold: Curvature Regularization", "TUnfold: Default/True", "TUnfold: Size Regularization/True", "TUnfold: Derivative Regularization/True", "TUnfold: Curvature Regularization/True", compare_unfolding_plots, "hw_eec3_with_hw_eec3_jetmet_tunfold_", true, detail);
 
 
 
